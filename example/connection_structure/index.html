@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../src/Dongxi.js"></script>
+		<style>
+			[apple]{ color: red; }
+			[blueberry]{ color: blue; }
+			[orange]{ color: orange; }
+			connection { border: 1px solid #000; }
+		</style>
+	</head>
+	<body>
+		<script>
+			// a <connection> with three <span> texted on apple,
+			//   blueberry and orange
+			Dongxi.manage.run = function(){				
+				var _builder = Dongxi.builder();
+				var stage = _builder.make('stage', {});
+				var connection = _builder.make('connection',
+					{
+						ports: [
+							{
+								sort: 'text',
+								info: { 
+									types: ['apple'],
+									text: 'Hello, apple! ' 
+								}
+							},
+							{
+								sort: 'text',
+								info: {
+									types: ['blueberry'],								
+									text: 'Hello, blueberry! ' 
+								}
+							},
+							{
+								sort: 'text',
+								info: { 
+									types: ['orange'],
+									text: 'Hello, orange! ' 
+								}
+							}
+						]
+					}					
+				);
+				connection.addEventListener('click', function(ev){
+					if(ev.target.hasAttribute('index')
+						&& (connection.hasChildNodes(ev.target) >= 0)){
+						alert('You click [' + (1 + Number(ev.target.getAttribute('index'))) + '] fruit.')
+					}
+				});
+				stage.appendChild(connection);
+				window.document.body.prepend(stage);
+			}
+			
+			// call Dongxi.manage.main
+			Dongxi.manage.main();
+		</script>
+	</body>
+</html>

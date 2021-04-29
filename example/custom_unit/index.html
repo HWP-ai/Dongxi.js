@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../src/Dongxi.js"></script>
+		<style>
+			fruit{ display: block; }
+		</style>
+	</head>
+	<body>
+		<script>
+		
+			/**
+			 * create a new builder
+			 */
+			var builder = Dongxi.builder('mybuilder');
+
+			/**
+			 * define the production of a "fruit"
+			 */
+			builder.units['fruit'] = function(info){
+				var node = this.prefab('fruit', info);
+				var text = builder.make('text', {
+					text: 'Hello, ' + info.type + '!'
+				});
+				node.setAttribute(info.type, "");
+				node.appendChild(text);
+				if(info.color){
+					node.style.color = info.color;
+				}
+				return node;
+			}
+
+			/**
+			 * apple, blueberry and orange
+			 */
+			Dongxi.manage.run = function(){				
+				var _builder = Dongxi.builder('mybuilder');
+				var stage = _builder.make('stage', {});
+				var fruit1 = _builder.make('fruit', {
+					type: 'apple',
+					color: 'red'
+				});
+				var fruit2 = _builder.make('fruit', {
+					type: 'blueberry',
+					color: 'blue'
+				});
+				var fruit3 = _builder.make('fruit', {
+					type: 'orange',
+					color: 'orange'
+				});
+				stage.appendChild(fruit1);
+				stage.appendChild(fruit2);
+				stage.appendChild(fruit3);
+				window.document.body.prepend(stage);
+			}
+			
+			/**
+			 * call Dongxi.manage.main
+			 */
+			Dongxi.manage.main();
+		</script>
+	</body>
+</html>

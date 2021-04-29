@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../src/Dongxi.js"></script>
+	</head>
+	<body>
+		<script>
+			// override the Dongxi.manage.run to make a red
+			//   "Hello,world!"
+			Dongxi.manage.run = function(){				
+				var _builder = Dongxi.builder();
+				var stage = _builder.make('stage', {});
+				var message1 = _builder.make('text', 
+					{ text: 'Hello, apple! ' }
+				);
+				var message2 = _builder.make('text', 
+					{ text: 'And, hello, blueberry! ' }
+				);
+				var message3 = _builder.make('text', 
+					{ text: 'And, hello, orange! ' }
+				);
+				message1.style.color = 'red';
+				message2.style.color = 'blue';
+				message3.style.color = 'orange';
+				stage.appendChild(message1);
+				stage.appendChild(message2);				
+				stage.appendChild(message3);
+				window.document.body.prepend(stage);
+			}
+			
+			// call Dongxi.manage.main
+			Dongxi.manage.main();
+		</script>
+	</body>
+</html>
