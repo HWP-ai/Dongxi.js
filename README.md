@@ -1,8 +1,12 @@
+
+![dongxi](resources/title.png)
+
+
 # Dongxi.js
 
 **这不是一个已经发布的商业版本产品！但你可以通过 MIT 许可使用它。**
 
-实验基于 “构造单元" (build unit) 的浏览器环境 JavaScript 开发。
+实验基于 “筑构单元" (build unit) 的浏览器环境 JavaScript 开发。
 
 # 欢迎项目展示
 
@@ -25,9 +29,9 @@
 
 1. 由开发者手动管理内部运行状态，即可能手动创建标签元素，尽可能不使用“自动”，“绑定”，“渲染”，“模板”这类的过程。
 
-2. 分为“节点”，“构造单元”，“程序”，三个层次。节点是由构造器创建的。构造器是开发者定义的。最终，程序调用构造器。通过 “语义” 和 “连接” 使得相互之间协调运行。
+2. 分为“节点”，“筑构单元”，“程序”，三个层次。节点是由筑构器创建的。筑构器是开发者定义的。最终，程序调用筑构器。通过 “语义” 和 “连接” 使得相互之间协调运行。
 
-3. “构造单元”应当是是可以自定义、管理和可以复用的。
+3. “筑构单元”应当是是可以自定义、管理和可以复用的。
 
 # 快速上手
 
@@ -41,8 +45,8 @@
 | red_font             | manage API, builder API | 通过改写 manage API 实现红色字体。调用 builder.make 的示例。|
 | many_font            | manage API, builder API | 多次调用 builder.make 的示例。                              |
 | conection            | manage API, builder API | 调用 builder.make('connection', {}) 的示例。                |
-| custom_unit          | manage API, builder API | 自定义构造单元的简单示范。                                  |
-| custom_unit2         | manage API, builder API | 使用列表数据多次使用自定义构造单元。                        |
+| custom_unit          | manage API, builder API | 自定义筑构单元的简单示范。                                  |
+| custom_unit2         | manage API, builder API | 使用列表数据多次使用自定义筑构单元。                        |
 | connection_structure | manage API, builder API | 使用 connection 中的下级元素的自动创建的 index 属性。       |
 
 ## 最少安装和调用
@@ -85,21 +89,21 @@ Dongxi.manage.main()
 
 # builder API
 
-通过 builder API 可以自定义构造单元，进行构造单元的创建。
+通过 builder API 可以自定义筑构单元，进行筑构单元的创建。
 
-## 构造器（builder），类别（sort），构造信息（info），类别特有信息，导出节点（node）
+## 筑构器（builder），类别（sort），筑构信息（info），类别特有信息，导出节点（node）
 
-构造单元是通过构造器创造的，并且最后形成为一个导出节点（node）。
+筑构单元是通过筑构器创造的，并且最后形成为一个导出节点（node）。
 
-进行一次构造，需要向构造器提供两个参数：类别（sort）和构造信息（info）。
+进行一次筑构，需要向筑构器提供两个参数：类别（sort）和筑构信息（info）。
 
 类别包括原始类别（native sort）和自定义类别（custom sort）。
 
-构造信息包括类别无关构造信息（sort-independent）和特有信息。
+筑构信息包括类别无关筑构信息（sort-independent）和特有信息。
 
-## 清单： 类别无关构造信息
+## 清单： 类别无关筑构信息
 
-这些构造信息是与类别无关的，他们被用到任何的构造单元的构造的过程中。
+这些筑构信息是与类别无关的，他们被用到任何的筑构单元的筑构的过程中。
 
 | 域                              |  效果                                                   |
 |---------------------------------|---------------------------------------------------------|
@@ -115,7 +119,7 @@ Dongxi.manage.main()
 
 ## API： Dongxi.builder(name, options? )
 
-取回名为 name 的构造器，如果没有，则新建一个。
+取回名为 name 的筑构器，如果没有，则新建一个。
 
 ```javascript
 var mybuilder1 = Dongxi.builder('mybuilder1')
@@ -127,21 +131,21 @@ var mybuilder1 = Dongxi.builder('mybuilder1')
 
 ## API： $builder.make(sort, info)
 
-以 info 为构造信息，创建一个类别名为 sort 的构造单元。一般地，这个过程可以又调用了 $builder.prefab 和 $builder.make 。
+以 info 为筑构信息，创建一个类别名为 sort 的筑构单元。一般地，这个过程可以又调用了 $builder.prefab 和 $builder.make 。
 
-如果 sort 为一个已经定义的构造单元，则调用该构造单元。
+如果 sort 为一个已经定义的筑构单元，则调用该筑构单元。
 
 $builder.make 返回的是一个一般的 HTML Node 。
 
 ## API： $builder.makeMany(ainfos, f)
 
-构造多个构造单元。
+筑构多个筑构单元。
 
 ainfos 是一个每个元素形如 { sort: "", info: {} } 的数组。f 是一个形如 function(_node) 的函数。
 
 $builder.makeMany 会将 ainfos 的每个元素代入 $builder.make(sort, info) ，并将导出的节点导出给函数 f 。
 
-## 清单： 一些实现了的构造单元
+## 清单： 一些实现了的筑构单元
 
 | 类别（sort)      |  特有信息                             |
 |------------------|---------------------------------------|
@@ -149,18 +153,18 @@ $builder.makeMany 会将 ainfos 的每个元素代入 $builder.make(sort, info) 
 | "image"          |  info.src 用于指定显示的图像的位置。  |
 | "button"         |  info.text 用于指定显示的文本。       |
 | "input"          |  info.value 用于指定初始的文本输入。  |
-| "connection"     |  info.ports 用于指定每个子端构造单元。|
+| "connection"     |  info.ports 用于指定每个子端筑构单元。|
 | "stage"          |  info.created 创建的时间。              |
 
 ## API: $builder.units["BUILD_UNIT_NAME"] :: function(info)
 
-通过赋值 $builder.units\["BUILD_UNIT_NAME"\] 指定名为 "BUILD_UNIT_NAME" 的构造单元。
+通过赋值 $builder.units\["BUILD_UNIT_NAME"\] 指定名为 "BUILD_UNIT_NAME" 的筑构单元。
 
-已经赋值了的构造单元可以通过 $builder.make("BUILD_UNIT_NAME", info) 创建。
+已经赋值了的筑构单元可以通过 $builder.make("BUILD_UNIT_NAME", info) 创建。
 
-## 例子： 构造单元 "text" 的设置
+## 例子： 筑构单元 "text" 的设置
 
-这是已经实现了的对构造单元 "text" 的设置：
+这是已经实现了的对筑构单元 "text" 的设置：
 
 ```javascript
 	units.text = function(info){
@@ -170,9 +174,9 @@ $builder.makeMany 会将 ainfos 的每个元素代入 $builder.make(sort, info) 
 	}
 ```
 
-## 更多构造单元的例子
+## 更多筑构单元的例子
 
-在 `example\custom_unit` 也有一个例子，这个例子构造了一个构造单元 "fruit" 。
+在 `example\custom_unit` 也有一个例子，这个例子筑构了一个筑构单元 "fruit" 。
 
 # manage API
 
