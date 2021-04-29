@@ -54,7 +54,7 @@
 导入 Dongxi.js 文件：
 
 ```html
-<script src="src/Dongxi.js">
+<script src="src/Dongxi.js"></script>
 ```
 
 调用主函数：
@@ -197,3 +197,8 @@ manage.runOptions 与 builder 是无关的。
 # 更多例子
 
 可在 ["example"](./example) 中找到一些例子。
+
+# 字体
+
+上图的字体是 “喜鹊在山林” 字体。
+
