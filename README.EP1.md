@@ -49,8 +49,8 @@ info 的域及效果如下：
 
 | 域                              |  效果                                                                           |
 |---------------------------------|---------------------------------------------------------------------------------|
-| 类别无关筑构信息域              |  非 "environment" 特有的域。参考 README.md 。                                   |
-| info.events :: ["s"...]         |  指定收听的事件。例如 ['click', 'keypress'] 。                                  |
+| 类别无关筑构信息域              |  非 "environment" 特有的域。参考 [README.md](./README.md) 。                    |
+| info.events :: ["s"...]         |  指定收听的事件。例如 \['click', 'keypress'\] 。                                  |
 | info.ports :: ainfos            |  类似于 connection 节点的 ports 域，用于创建子端节点。                          |
 | info.onComponentEvent(e,c,n)    |  应用到组件事件上的函数。e是组件节点，c是组件事件，n是这个 "environment" 节点。 |
 
@@ -104,8 +104,8 @@ units['testA'] = function(info){
 
 Dongxi.manage.run = function(){
 	var stage = builder.make('stage', {});
-	var ism = builder.make('testA');
-	stage.appendChild(ism);
+	var testA = builder.make('testA');
+	stage.appendChild(testA);
 	window.document.body.prepend(stage);
 }
 ```
