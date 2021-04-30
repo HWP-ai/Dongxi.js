@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../src/Dongxi.js"></script>
+		<script src="../../EP1/Dongxi.EP1.js"></script>
+	</head>
+	<body>
+		<script>
+		
+			var builder = Dongxi.builder('main');
+			var units = builder.units;
+
+			units['testA'] = function(info){
+				var node = this.make('environment', {
+					
+					events: "click",
+					
+					ports: [
+					
+					{
+						sort: "text",
+						info: {
+							text: "click1",
+							types: ["component", "click1"]
+						}
+					},
+					
+					{
+						sort: "text",
+						info: {
+							text: "click2",
+							types: ["component", "click2"]
+						}
+					},
+					
+					],
+					
+					onComponentEvent: function(event, component, node){
+						if(component.hasAttribute("click1")){
+							alert("click1");
+							event.preventDefault();
+						} else if(component.hasAttribute("click2")){
+							alert("click2");
+							event.preventDefault();
+						}
+					}
+					
+				});
+				return node;
+			}
+
+			Dongxi.manage.run = function(){
+				var stage = builder.make('stage', {});
+				var ism = builder.make('testA');
+				stage.appendChild(ism);
+				window.document.body.prepend(stage);
+			}
+
+			// call Dongxi.manage.main that
+			//  act as default
+			Dongxi.manage.main();
+		</script>
+	</body>
+</html>

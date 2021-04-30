@@ -100,6 +100,10 @@
 	}
 	
 	Builder.prototype.make = function(sort, info){
+		if(!(sort in this.units)){
+			console.log(sort, info);
+			throw 'undefined unit';
+		}
 		return this.units[sort].call(this, info);
 	}
 	
@@ -133,7 +137,7 @@
 
 	units.button = function(info){
 		var node = this.prefab('button', info);
-		node.text = info.text;
+		node.innerText = info.text;
 		return node;
 	}
 
